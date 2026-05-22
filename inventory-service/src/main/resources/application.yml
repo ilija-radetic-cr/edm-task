@@ -1,0 +1,24 @@
+server:
+  port: ${HTTP_PORT:8081}
+  shutdown: graceful
+
+spring:
+  application:
+    name: inventory-service
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+kafka:
+  bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+  topic:
+    orders: ${KAFKA_ORDERS_TOPIC:orders}
+    dlt: ${KAFKA_DLT_TOPIC:orders-dlt}
+  consumer:
+    group-id: ${CONSUMER_GROUP_ID:inventory-service}
+
+inventory:
+  stock-file: ${INITIAL_STOCK_FILE:classpath:stock-init.json}
+
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}

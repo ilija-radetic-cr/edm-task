@@ -1,0 +1,20 @@
+server:
+  port: ${HTTP_PORT:8080}
+  shutdown: graceful
+
+spring:
+  application:
+    name: order-api
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+kafka:
+  bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+  topic:
+    orders: ${KAFKA_ORDERS_TOPIC:orders}
+  producer:
+    timeout-ms: ${PRODUCER_TIMEOUT_MS:5000}
+
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}
